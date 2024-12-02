@@ -1,0 +1,28 @@
+<ion-header>
+  <img src="assets/duocuchl.jpeg" alt="Logo" class="qr-logo" />
+</ion-header>
+
+<ion-content>
+  <div class="scanner-container">
+    <h2>Escanea el código QR</h2>
+
+    <ion-button expand="full" routerLink="/home">
+      <ion-icon slot="start" name="home-outline"></ion-icon>
+      Volver al Inicio
+    </ion-button>
+
+    <div *ngIf="scannedData">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Resultado del escaneo:</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ scannedData }}
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Vista de la cámara -->
+    <video #video width="100%" height="auto"></video>
+  </div>
+</ion-content>

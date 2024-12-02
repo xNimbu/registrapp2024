@@ -1,0 +1,45 @@
+<ion-header>
+  <img src="assets/duocuchl.jpeg" alt="Logo" class="asistencia-logo" />
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="attendanceRecords.length > 0">
+    <ion-accordion-group>
+      <ion-accordion *ngFor="let subjectRecord of groupedAttendanceRecords">
+        <ion-item slot="header">
+          <ion-label>{{ subjectRecord.subject }}</ion-label>
+        </ion-item>
+        
+        <div slot="content">
+          <ion-grid>
+            <ion-row class="header-row">
+              <ion-col><strong>Sección</strong></ion-col>
+              <ion-col><strong>Sala</strong></ion-col>
+              <ion-col><strong>Fecha</strong></ion-col>
+              <ion-col><strong>Asistencia</strong></ion-col>
+            </ion-row>
+            <ion-row *ngFor="let record of subjectRecord.records">
+              <ion-col>{{ record.section }}</ion-col>
+              <ion-col>{{ record.room }}</ion-col>
+              <ion-col>{{ record.date }}</ion-col>
+              <ion-col>{{ record.attendance ? 'Presente' : 'Ausente' }}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </ion-list>
+
+  <ion-text *ngIf="attendanceRecords.length === 0" color="medium">
+    <p>No hay registros de asistencia.</p>
+  </ion-text>
+
+  <ion-text color="danger" *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+
+  <ion-button expand="full" class="volver-button" (click)="goToHome()">
+    <ion-icon slot="start" name="home-outline"></ion-icon>
+    Volver al Inicio
+  </ion-button>
+</ion-content>
